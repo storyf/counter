@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+    var counter = 112;
+    $(function(){
+        //ボタンを押したときに動く
+        $("#count-up-button").on("touchend",function(){
+            if(counter<9999){
+                counter++;
+                img_update(counter);
+            }
+            console.log("counter" + counter);
+        });
+        
+        $("#count-down-button").on("touchend",function(){
+            if(counter>0){
+                counter--;
+                img_update(counter);
+            }
+            console.log("counter" + counter);
+            
+        });
+        
+        $("#reset").on("touchend",function(){
+            if(counter > 0 && confirm('カウンターをリセットしますか？')){
+                counter = 0;
+                img_update(counter);
+            }
+        });
+    });
+    
+    //カウンタの画像の更新するfunction
+    function img_update(counter){
+        //例:1→0001
+        //例:123→0123
+        //1050
+        var w1;
+        var w2;
+        var w3;
+        var w4;
+        
+        var k1;
+        var k2;
+        var k3;
+        var k4;
+        
+        w1 = counter%10;
+        k1 = w1;
+        console.log(k1);
+        
+        w2 = counter%100-k1;
+        k2 = w2*0.1;
+        console.log(k2);
+        
+        w3 = counter%1000-(k2*10)-k1;
+        k3 = w3*0.01;
+        console.log(k3);
+        
+        w4 = counter%10000-(k3*100)-(k2*10)-k1;
+        k4 = w4*0.001;
+        console.log(k4);
+        
+        
+        $("#numberdisplay").html("");
+        var html = "";
+        
+        // $("#numberdisplay").append("<img src='"+img/no_00.png+"'/>");
+        $("#numberdisplay").append("<img src='img/no_0"+k4+".png' width='55'>");
+        $("#numberdisplay").append("<img src='img/no_0"+k3+".png' width='55'>");
+        $("#numberdisplay").append("<img src='img/no_0"+k2+".png' width='55'>");
+        $("#numberdisplay").append("<img src='img/no_0"+k1+".png' width='55'>");
+        
+        
+        // html += ("<img src='img/no_0'+k4+'.png' width='55' id='k4'>");
+        // html += ('<img src="img/no_0"+k3+".png" width="55" id="k3">');
+        // html += ('<img src="img/no_0"+k2+".png" width="55" id="k2">');
+        // html += ('<img src="img/no_0"+k1+".png" width="55" id="k1">');
+        // console.log(html);
+        // $("#numberdisplay").append(html);
+        
+    }
+    
+    </script>
+</head>
+<body>
+
+
+
+	<div id="numberdisplay">
+        <img src="img/no_00.png" width="55" id="k4">
+        <img src="img/no_00.png" width="55" id="k3">
+        <img src="img/no_00.png" width="55" id="k2">
+        <img src="img/no_00.png" width="55" id="k1">
+    </div>
+    
+    <div class="reset">
+        <button><img src="img/btn_reset_normal.png" width="80" id="reset"></button>
+    </div>
+        <button id="count-up-button"><img src="img/btn_count_up.gif" height="50" width="135"></button>
+        <button id="count-down-button"><img src="img/btn_count_down.gif" height="50" width="135"></button>
+</body>
+</html>

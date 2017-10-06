@@ -1,0 +1,19 @@
+@charset "UTF-8";
+*{
+    font-size:10pt;
+}
+
+body{
+	margin:1em;
+	padding:1em;
+	font-family:"メイリオ",Meiryo,sans-serif;
+    background:#000000;
+}
+
+.reset{
+    text-align: center;
+}
+
+#numberdisplay{
+    text-align: center;
+}
